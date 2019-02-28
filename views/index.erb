@@ -33,13 +33,13 @@
       e.preventDefault();
     });
 	});
-	var img = new Image(920,100);
-	img.src = "./uwa.svg";
+	var img = new Image();
+	img.src = "./branch.svg";
 	var cvs = document.getElementById('canvas');
 	var ctx = cvs.getContext('2d');
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	var ss = 20500/3
+	var ss = 1000/3
 	console.log(width,height)
 	img.onload = function(){
         ctx.imageSmoothingEnabled = true;
