@@ -8,6 +8,7 @@
 <body>
 <!--- <ul id="msgs"></ul>-->
 <canvas id="canvas"></canvas>
+<canvas id="sakura"></canvas>
 </body>
 </html>
 <script>
@@ -39,10 +40,23 @@
 	var ctx = cvs.getContext('2d');
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	var ss = 1000/3
+	var ss = 1430/3
+	var vv =290/3
 	console.log(width,height)
 	img.onload = function(){
-        ctx.imageSmoothingEnabled = true;
-			ctx.drawImage(img,0,0,ss,ss*(820/1440),0,0,width,height)
+      ctx.imageSmoothingEnabled = true;
+			//ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
+			ctx.drawImage(img,vv*2,0,ss,500,0,0,width,height)
+	}
+	sakura()
+	function sakura(){
+		var cvs = document.getElementById('sakura');
+		var ctx = cvs.getContext('2d');
+		var img = new Image();
+		img.src = "./flower.png";
+		img.onload = function(){
+			ctx.imageSmoothingEnabled = true;
+       ctx.drawImage(img,40,40,18,15);
+    }
 	}
 </script>

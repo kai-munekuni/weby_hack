@@ -5,4 +5,15 @@
 #canvas {
   width: 100vw;
   height: 99.9vh;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+#sakura {
+  width: 100vw;
+  height: 99vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
