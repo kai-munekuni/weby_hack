@@ -48,7 +48,7 @@
 	img.onload = function(){
       ctx.imageSmoothingEnabled = true;
 			//ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
-			ctx.drawImage(img,vv,0,ss,500,0,0,width,height)
+			ctx.drawImage(img,vv*1,0,ss,500,0,0,width,height)
 	}
 	//sakura()
 	function sakura(){
@@ -107,5 +107,8 @@
         act();
     }, 1);
     // これで１回の処理は終了
+}
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
 }
 </script>
