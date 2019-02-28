@@ -1,0 +1,8 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+#canvas {
+  width: 100vw;
+  height: 99.9vh;
+}
