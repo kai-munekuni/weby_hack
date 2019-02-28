@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>チャット</title>
+  <title>weby Lab</title>
 	<link rel="stylesheet" type="text/css" href="../index.css">
 </head>
 <body>
@@ -21,9 +21,11 @@
     ws.onopen = () => console.log('connection opened');
     ws.onclose = () => console.log('connection closed');
     ws.onmessage = m => {
-      let li = document.createElement('li');
-      li.textContent = m.data;
-      msgbox.insertBefore(li, msgbox.firstChild);
+      if (m.data=="hor"){
+				act()
+			}else{
+				sakura()
+			}
     }
 
     sendMsg.addEventListener('click', () => sendMsg.value = '');
@@ -40,15 +42,15 @@
 	var ctx = cvs.getContext('2d');
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	var ss = 1430/3
-	var vv =290/3
+	var ss = 1430/5
+	var vv =290/5
 	console.log(width,height)
 	img.onload = function(){
       ctx.imageSmoothingEnabled = true;
 			//ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
-			ctx.drawImage(img,vv*2,0,ss,500,0,0,width,height)
+			ctx.drawImage(img,vv,0,ss,500,0,0,width,height)
 	}
-	sakura()
+	//sakura()
 	function sakura(){
 		var cvs = document.getElementById('sakura');
 		var ctx = cvs.getContext('2d');
@@ -59,4 +61,51 @@
        ctx.drawImage(img,40,40,18,15);
     }
 	}
+	function sakura2(){
+		var cvs = document.getElementById('sakura');
+		var ctx = cvs.getContext('2d');
+		var img = new Image();
+		img.src = "./flower.png";
+		img.onload = function(){
+			ctx.imageSmoothingEnabled = true;
+       ctx.drawImage(img,80,80,18,15);
+    }
+	}
+	var arr=[[20,20],[80,70],[120,30],[140,50]]
+	function sakura3(){
+		var cvs = document.getElementById('sakura');
+		var ctx = cvs.getContext('2d');
+		var img = new Image();
+		img.src = "./flower.png";
+		ctx.imageSmoothingEnabled = true;
+		img.onload = function(){
+		array.forEach(element => {
+			ctx.drawImage(img,element[0],element[1],18,15);
+			console.log(element)
+		});
+
+		}
+	}
+	var cvsakura = document.getElementById('sakura');
+		var ctsakura = cvsakura.getContext('2d');
+		var imgsakura = new Image();
+		imgsakura.src = "./flower.png";
+		ctsakura.imageSmoothingEnabled = true;
+	function act() {
+    // パラメータが無くなっていれば終了
+    if(arr.length==0) return;
+    // 配列の先頭を使う
+    param = arr[0];
+
+    //TODO: 何かの処理
+    ctsakura.drawImage(imgsakura,param[0],param[1],18,15);
+
+    // 処理済みのパラメータ削除
+    arr.shift();
+    // 次の回の実行予約
+    setTimeout(function(){
+        act();
+    }, 1);
+    // これで１回の処理は終了
+}
 </script>

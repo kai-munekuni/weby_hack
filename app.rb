@@ -11,12 +11,15 @@ get '/' do
 end
 
 get '/horizontal' do
-
+  settings.sockets.each do |s|
+        s.send("hor")
+    end
+    return 'hoge'
 end
 
 get '/vertical' do
   settings.sockets.each do |s|
-        s.send("hoge")
+        s.send("ver")
     end
     return 'hoge'
 end
