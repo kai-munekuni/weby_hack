@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>weby Lab</title>
-	<link rel="stylesheet" type="text/css" href="../index.css">
-</head>
 <body>
 <!--- <ul id="msgs"></ul>-->
 <canvas id="canvas"></canvas>
 <canvas id="sakura"></canvas>
 </body>
-</html>
 <script>
   window.addEventListener('load', () => {
     let msgbox = document.getElementById('msgs');
@@ -23,7 +15,7 @@
     ws.onmessage = m => {
       if (m.data=="ver"){
 				var order = <%= session[:number] %>
-				var	waitingTime=(order-1)*(0.15*11)
+				var	waitingTime=(order-1)*(0.09*11)
 				console.log(waitingTime)
 				setTimeout("act()", waitingTime*1000);
 			}else{
@@ -86,7 +78,7 @@ function act() {
 				act();
 				console.log(sakuraCount)
 				sakuraCount ++
-		}, 150);
+		}, 90);
     // これで１回の処理は終了
 }
 
