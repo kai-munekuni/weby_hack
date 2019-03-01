@@ -16,11 +16,11 @@ end
 
 
 get '/' do
-  erb :index
+  erb :top
 end
 
-get '/lp' do
-  erb :top
+get '/sakura' do
+  erb :index
 end
 
 post '/join' do
@@ -28,12 +28,12 @@ post '/join' do
   count.number = count.number + 1
   count.save
   session[:number] = count.number
-  redirect '/'
+  redirect '/sakura'
 end
 
 get '/finish' do
   Count.first.delete
-  redirect '/lp'
+  redirect '/'
 end
 
 get '/vertical' do
