@@ -50,27 +50,7 @@
 			//ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
 			ctx.drawImage(img,vv*1,0,ss,500,0,0,width,height)
 	}
-	//sakura()
-	function sakura(){
-		var cvs = document.getElementById('sakura');
-		var ctx = cvs.getContext('2d');
-		var img = new Image();
-		img.src = "./flower.png";
-		img.onload = function(){
-			ctx.imageSmoothingEnabled = true;
-       ctx.drawImage(img,40,40,18,15);
-    }
-	}
-	function sakura2(){
-		var cvs = document.getElementById('sakura');
-		var ctx = cvs.getContext('2d');
-		var img = new Image();
-		img.src = "./flower.png";
-		img.onload = function(){
-			ctx.imageSmoothingEnabled = true;
-       ctx.drawImage(img,80,80,18,15);
-    }
-	}
+
 	var arr=[[20,20],[80,70],[120,30],[140,50]]
 	function sakura3(){
 		var cvs = document.getElementById('sakura');
@@ -91,23 +71,30 @@
 		var imgsakura = new Image();
 		imgsakura.src = "./flower.png";
 		ctsakura.imageSmoothingEnabled = true;
-	function act() {
+		var sakuraCount = 0
+function act() {
     // パラメータが無くなっていれば終了
-    if(arr.length==0) return;
+    if(sakuraCount==10) {
+			sakuraCount=0
+			return};
     // 配列の先頭を使う
-    param = arr[0];
 
+	tate = getRandomArbitrary(4,80)
+	yoko = getRandomArbitrary(1,290)
     //TODO: 何かの処理
-    ctsakura.drawImage(imgsakura,param[0],param[1],18,15);
+    ctsakura.drawImage(imgsakura,(sakuraCount+1)*29,tate,36,30);
 
     // 処理済みのパラメータ削除
     arr.shift();
     // 次の回の実行予約
     setTimeout(function(){
-        act();
-    }, 1);
+				act();
+				console.log(sakuraCount)
+				sakuraCount ++
+		}, 1);
     // これで１回の処理は終了
 }
+
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
