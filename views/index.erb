@@ -22,12 +22,14 @@
     ws.onclose = () => console.log('connection closed');
     ws.onmessage = m => {
       if (m.data=="ver"){
-				sakura()
+				var order = <%= session[:number] %>
+				var	waitingTime=(order-1)*(0.15*11)
+				console.log(waitingTime)
+				setTimeout("act()", waitingTime*1000);
 			}else{
         var divide = parseInt(m.data)
         var order = <%= session[:number] %>
         show_tree(divide,order)
-        console.log(divide,order)
 			}
     }
 
@@ -51,8 +53,7 @@
     var height = window.innerHeight;
     var ss = 1430/divide
     var vv =290/divide
-    console.log(order)
-    console.log(width,height)
+
     img.onload = function(){
       ctx.imageSmoothingEnabled = true;
       //ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
@@ -60,21 +61,6 @@
     }
   }
 
-	var arr=[[20,20],[80,70],[120,30],[140,50]]
-	function sakura3(){
-		var cvs = document.getElementById('sakura');
-		var ctx = cvs.getContext('2d');
-		var img = new Image();
-		img.src = "./flower.png";
-		ctx.imageSmoothingEnabled = true;
-		img.onload = function(){
-		array.forEach(element => {
-			ctx.drawImage(img,element[0],element[1],18,15);
-			console.log(element)
-		});
-
-		}
-	}
 	var cvsakura = document.getElementById('sakura');
 		var ctsakura = cvsakura.getContext('2d');
 		var imgsakura = new Image();
@@ -82,6 +68,7 @@
 		ctsakura.imageSmoothingEnabled = true;
 		var sakuraCount = 0
 function act() {
+
     // パラメータが無くなっていれば終了
     if(sakuraCount==10) {
 			sakuraCount=0
@@ -94,13 +81,12 @@ function act() {
     ctsakura.drawImage(imgsakura,(sakuraCount+1)*29,tate,36,30);
 
     // 処理済みのパラメータ削除
-    arr.shift();
     // 次の回の実行予約
     setTimeout(function(){
 				act();
 				console.log(sakuraCount)
 				sakuraCount ++
-		}, 1);
+		}, 150);
     // これで１回の処理は終了
 }
 
