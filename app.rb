@@ -31,14 +31,19 @@ post '/join' do
   redirect '/'
 end
 
-get '/horizontal' do
+get '/finish' do
+  Count.first.delete
+  redirect '/lp'
+end
+
+get '/vertical' do
   settings.sockets.each do |s|
-        s.send("hor")
+        s.send(Count.first.number.to_s)
     end
     return 'hoge'
 end
 
-get '/vertical' do
+get '/horizontal' do
   settings.sockets.each do |s|
         s.send("ver")
     end
