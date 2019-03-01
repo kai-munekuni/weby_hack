@@ -21,10 +21,13 @@
     ws.onopen = () => console.log('connection opened');
     ws.onclose = () => console.log('connection closed');
     ws.onmessage = m => {
-      if (m.data=="hor"){
-				act()
-			}else{
+      if (m.data=="ver"){
 				sakura()
+			}else{
+        var divide = parseInt(m.data)
+        var order = <%= session[:number] %>
+        show_tree(divide,order)
+        console.log(divide,order)
 			}
     }
 
@@ -36,20 +39,27 @@
       e.preventDefault();
     });
 	});
-	var img = new Image();
-	img.src = "./branch.svg";
-	var cvs = document.getElementById('canvas');
-	var ctx = cvs.getContext('2d');
-	var width = window.innerWidth;
-	var height = window.innerHeight;
-	var ss = 1430/5
-	var vv =290/5
-	console.log(width,height)
-	img.onload = function(){
+
+
+  //show_tree()
+  function show_tree(divide,order){
+    var img = new Image();
+    img.src = "./branch.svg";
+    var cvs = document.getElementById('canvas');
+    var ctx = cvs.getContext('2d');
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var ss = 1430/divide
+    var vv =290/divide
+    console.log(order)
+    console.log(width,height)
+    img.onload = function(){
       ctx.imageSmoothingEnabled = true;
-			//ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
-			ctx.drawImage(img,vv*1,0,ss,500,0,0,width,height)
-	}
+      //ctx.drawImage(img,90,0,ss,ss*(820/1440),0,0,width,height)
+      ctx.drawImage(img,vv*(order-1),0,ss,500,0,0,width,height)
+    }
+  }
+
 	//sakura()
 	function sakura(){
 		var cvs = document.getElementById('sakura');
