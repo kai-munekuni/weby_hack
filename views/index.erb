@@ -12,14 +12,17 @@
 
     ws.onopen = () => console.log('connection opened');
     ws.onclose = () => console.log('connection closed');
+    var maxglobal=0
     ws.onmessage = m => {
       if (m.data=="ver"){
 				var order = <%= session[:number] %>
 				var	waitingTime=(order-1)*(0.09*11)
-				console.log(waitingTime)
+        console.log(maxglobal)
+       setTimeout("restart()",((0.09*11)*1000*maxglobal)+1000)
 				setTimeout("act()", waitingTime*1000);
 			}else{
         var divide = parseInt(m.data)
+        maxglobal = divide
         var order = <%= session[:number] %>
         show_tree(divide,order)
 			}
@@ -76,12 +79,13 @@ function act() {
     // 次の回の実行予約
     setTimeout(function(){
 				act();
-				console.log(sakuraCount)
 				sakuraCount ++
 		}, 90);
     // これで１回の処理は終了
 }
-
+function restart(){
+  ctsakura.clearRect(0,0,window.innerWidth,window.innerHeight)
+}
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
