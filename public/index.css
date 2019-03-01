@@ -2,12 +2,33 @@
   margin: 0px;
   padding: 0px;
 }
+
+body{
+  background: #CBDAD0;
+}
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  left:0;
+  z-index:0;
+  text-align: center;
+}
+.loading_content{
+  top: 30vh;
+}
+.loading h3{
+  font-family: 'Nunito';
+  color:#a22041
+}
 #canvas {
   width: 100vw;
   height: 99.9vh;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 3;
 }
 #sakura {
   width: 100vw;
@@ -15,15 +36,29 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-}
-body{
-  background: #CBDAD0;
+  z-index: 5;
 }
 
 .container-fluid {
   height: 100vh;
   background: #f8f4e6
+}
+
+.loading_sakura {
+  position: absolute;
+  width: 60vw;
+  top: 0;
+  left: 3vw;
+  z-index: 0
+}
+
+.slanted {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  top:0;
+  left: 0;
 }
 
 .pink {
